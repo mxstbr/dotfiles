@@ -1,0 +1,12 @@
+session_name: blog 
+start_directory: ~/projects/mxstbr/mxstbr.github.io
+windows:
+  - window_name: dev
+    layout: main-vertical
+    focus: true
+    panes:
+      - vim
+      - echo "Development here"
+  - window_name: background
+    panes:
+      - jekyll serve

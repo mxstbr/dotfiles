@@ -1,0 +1,21 @@
+session_name: spectrum
+start_directory: ~/projects/withspectrum/spectrum
+windows:
+  - window_name: dev
+    layout: main-vertical
+    focus: true
+    panes:
+      - vim .
+      - echo "Development here"
+  - window_name: servers
+    layout: tiled
+    panes:
+      - yarn run dev:iris
+      - yarn run dev:client
+      - yarn run dev:hermes
+      - yarn run dev:athena
+  - window_name: services
+    layout: even-horizontal 
+    panes:
+      - redis-server
+      - rethinkdb

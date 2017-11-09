@@ -1,0 +1,9 @@
+#
+# Global gitignore
+#
+
+# Fuck vims .swp files
+*.swp
+
+# Fuck MacOS
+.DS_Store
