@@ -47,3 +47,10 @@ PROMPT=$'\n''${path_string} ${return_status} %{$reset_color%}'
 export FZF_DEFAULT_OPTS="--bind 'ctrl-j:ignore,ctrl-k:ignore'"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+export PATH="$HOME/.yarn/bin:$PATH"
+export EDITOR=vim
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[[ -f /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.zsh
