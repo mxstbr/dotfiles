@@ -27,14 +27,6 @@ set incsearch  " Do highlight phrases while searching
 set nohlsearch " Don't continue to highlight searched phrases
 set ignorecase " Case insensitive search
 
-" Change cursor based on mode
-let &t_SI = "\e[6 q" " Steady bar in insert mode
-let &t_EI = "\e[2 q" " Steady block in normal/visual modes
-
-" Reset cursor to block on start and to bar on exit of vim
-autocmd VimEnter * silent !echo -ne "\e[2 q"
-autocmd VimLeave * silent !echo -ne "\e[6 q"
-
 " Add the silver searcher to the runtimepath
 set rtp+=/usr/local/opt/fzf
 
@@ -71,6 +63,7 @@ Plug 'tpope/vim-commentary'
 Plug 'reasonml-editor/vim-reason'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'vim-scripts/AutoComplPop'
+Plug 'wincent/terminus'
 
 call plug#end()
 
@@ -104,6 +97,10 @@ let g:ale_sign_error = '💩'
 let g:ale_sign_warning = '👉'
 let g:ale_linters = {
       \'javascript': ['flow']
+      \}
+let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_fixers = {
+      \'javascript': ['prettier']
       \}
 
 " Configure JSX highlighting
