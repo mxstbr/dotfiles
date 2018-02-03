@@ -4,6 +4,11 @@
 
 # Fuck vims .swp files
 *.swp
+*.swo
+*.swq
 
 # Fuck MacOS
 .DS_Store
+
+# Fuck yarn errors
+yarn-error.log
