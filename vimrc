@@ -64,6 +64,8 @@ Plug 'reasonml-editor/vim-reason'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'vim-scripts/AutoComplPop'
 Plug 'wincent/terminus'
+Plug 'leafgarland/typescript-vim'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
