@@ -11,7 +11,7 @@ windows:
     layout: tiled
     panes:
       - yarn run dev:iris
-      - yarn run dev:client
+      - yarn run dev:web
       - yarn run dev:hermes
       - yarn run dev:athena
   - window_name: services
