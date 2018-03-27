@@ -125,3 +125,9 @@ nnoremap <silent> <Nop> :TmuxNavigatePrevious<cr>
 
 " Configure vim-fzf
 nmap <C-p> :Files<CR>
+
+" Open new splits to the right and the bottom
+set splitbelow
+set splitright
+
+
