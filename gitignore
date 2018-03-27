@@ -12,3 +12,6 @@
 
 # Fuck yarn errors
 yarn-error.log
+
+# Fuck VSCode
+.vscode
