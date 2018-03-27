@@ -99,9 +99,12 @@ let g:ale_sign_column_always = 1
 let g:ale_sign_error = '💩'
 let g:ale_sign_warning = '👉'
 let g:ale_linters = {
-      \'javascript': ['flow']
+      \'javascript': ['flow', 'eslint']
       \}
 let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_javascript_eslint_suppress_missing_config = 1
+let g:ale_javascript_eslint_suppress_eslintignore = 1
+let g:ale_javascript_eslint_use_global = 0
 let g:ale_fixers = {
       \'javascript': ['prettier']
       \}
