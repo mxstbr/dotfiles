@@ -10,7 +10,10 @@ ENABLE_CORRECTION="true"
 HIST_STAMPS="dd.mm.yyyy"
 
 # Plugins
-plugins=(git)
+plugins=(
+  git
+  yarn-autocompletions
+)
 
 source $ZSH/oh-my-zsh.sh
 
