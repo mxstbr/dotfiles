@@ -1,0 +1,12 @@
+session_name: draft-js-markdown-plugin
+start_directory: ~/projects/withspectrum/draft-js-markdown-plugin/
+windows:
+  - window_name: dev
+    layout: main-vertical
+    focus: true
+    panes:
+      - vim .
+      - echo "Development here"
+  - window_name: background
+    panes:
+      - DEV_PORT=4010 yarn run dev
