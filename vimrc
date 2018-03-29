@@ -14,6 +14,10 @@ set background=dark         " Needed for solarized colorscheme
 
 set omnifunc=syntaxcomplete#Complete " Enable auto completion
 set completeopt=longest,menuone      " Select the match with the most common text, rather than the first one, in omnicomplete
+
+set undofile            " Persist undo history between sessions
+set undodir=~/.vim/undo " ...but store all the persisted files in a single directory
+
 " Select omnicomplete option with ENTER
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " Always keep a menu item highlighted

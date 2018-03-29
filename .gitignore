@@ -1,1 +1,3 @@
 vim/plugged/
+vim/undo/*
+!vim/undo/.gitkeep
