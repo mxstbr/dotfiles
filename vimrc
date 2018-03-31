@@ -43,7 +43,7 @@ au FocusGained,BufEnter * :checktime " Also reload when we switch buffers
 "
 call plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-sensible' " Sensible defaults
 Plug 'scrooloose/nerdtree'
 Plug 'Aldlevine/nerdtree-git-plugin'
 Plug 'altercation/vim-colors-solarized'
@@ -52,12 +52,11 @@ Plug 'mxw/vim-jsx'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'styled-components/vim-styled-components', { 'branch': 'rewrite' }
-Plug 'jiangmiao/auto-pairs'
-Plug 'unkiwii/vim-nerdtree-sync'
-Plug 'tpope/vim-abolish'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'jiangmiao/auto-pairs' " Insert parenthesis etc in pairs
+Plug 'unkiwii/vim-nerdtree-sync' " Sync open file to NERDTree
+Plug 'tpope/vim-abolish' " Case-preserving search and replace :S
 Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
+Plug 'w0rp/ale' " Async linting
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jparise/vim-graphql'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'install --all' }
@@ -67,9 +66,11 @@ Plug 'tpope/vim-commentary'
 Plug 'reasonml-editor/vim-reason'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'vim-scripts/AutoComplPop'
-Plug 'wincent/terminus'
+Plug 'wincent/terminus' " Better vim + tmux
 Plug 'leafgarland/typescript-vim'
-Plug 'tpope/vim-fugitive'
+Plug 'wellle/targets.vim'
+Plug 'ajh17/VimCompletesMe'
+Plug 'ap/vim-css-color'
 
 call plug#end()
 
