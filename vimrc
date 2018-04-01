@@ -10,10 +10,25 @@ set numberwidth=2  " Numbers are 1 char wide
 set tabstop=4     " One tab = 4 spaces
 set shiftwidth=2  " One tab press = 2 spaces
 set softtabstop=2 expandtab " Tab => spaces
-set background=dark         " Needed for solarized colorscheme
+set nowrap " Don't wrap lines
+set linebreak
+set autoindent
+filetype plugin indent on
+
+set backspace=indent,eol,start " Allow backspacing over indentation, line breaks and insertion starts
+
+set background=dark " Needed for solarized colorscheme
+set laststatus=2
+set showmode " Show mode at bottom
+set showcmd  " Show incomplete commands
+
+set noswapfile
+set nobackup
+set nowb
 
 set omnifunc=syntaxcomplete#Complete " Enable auto completion
 set completeopt=longest,menuone      " Select the match with the most common text, rather than the first one, in omnicomplete
+set history=1000  " Store longer history
 
 set undofile            " Persist undo history between sessions
 set undodir=~/.vim/undo " ...but store all the persisted files in a single directory
@@ -30,6 +45,7 @@ inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
 set incsearch  " Do highlight phrases while searching
 set nohlsearch " Don't continue to highlight searched phrases
 set ignorecase " Case insensitive search
+set smartcase  " ...unless you type a capital
 
 " Add the silver searcher to the runtimepath
 set rtp+=/usr/local/opt/fzf
@@ -66,24 +82,30 @@ Plug 'tpope/vim-commentary'
 Plug 'reasonml-editor/vim-reason'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'vim-scripts/AutoComplPop'
-Plug 'wincent/terminus' " Better vim + tmux
+Plug 'wincent/terminus'   " Better vim + tmux
 Plug 'leafgarland/typescript-vim'
 Plug 'wellle/targets.vim'
 Plug 'ajh17/VimCompletesMe'
 Plug 'ap/vim-css-color'
-Plug 'octref/RootIgnore' " Add .gitignore files to wildignore
+Plug 'octref/RootIgnore'  " Add .gitignore files to wildignore
+Plug 'tpope/vim-fugitive' " Necessary for the CTags stuff to work
 
 call plug#end()
+
+" Set the leader options
+let mapleader = '\<Space>'
+nnoremap <Leader>\ :edit .<cr>
 
 " Configure NerdTree
 :set mouse=a
 let g:NERDTreeMouseMode=3 " Use NERDTree with a mouse
-nnoremap <C-\> :edit .<CR>
+nnoremap <c-\> :edit .<cr>
 let g:NERDTreeGitStatusNodeColorization=1 " Enable git status colorisation a la Atom
 let g:NERDTreeShowHidden=1 " Show dotfiles by default
 let loaded_netrwPlugin=1 " Disable netrw since we're going to hijack it with NERDTree anyway
 let NERDTreeRespectWildIgnore=1 " Respect wildignore
 let g:NERDTreeHijackNetrw = 1 " Use the split explorer model, hijack netrw
+let g:NERDTreeMinimalUI=1 " Hide 'Press ? for help' prompt
 
 " Configure vim-nerdtree-sync
 let g:nerdtree_sync_cursorline=1 " Enable syncing of active file to nerdtree
