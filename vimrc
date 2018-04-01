@@ -71,18 +71,18 @@ Plug 'leafgarland/typescript-vim'
 Plug 'wellle/targets.vim'
 Plug 'ajh17/VimCompletesMe'
 Plug 'ap/vim-css-color'
+Plug 'octref/RootIgnore' " Add .gitignore files to wildignore
 
 call plug#end()
 
 " Configure NerdTree
-" autocmd StdinReadPre * let s:std_in=1 " Automatically open NerdTree if a directory is opened in vim
-" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Close vim if the only window left open is NERDTree
 :set mouse=a
 let g:NERDTreeMouseMode=3 " Use NERDTree with a mouse
 nnoremap <C-\> :edit .<CR>
 let g:NERDTreeGitStatusNodeColorization=1 " Enable git status colorisation a la Atom
-let g:NERDTreeShowHidden=1 " Show hidden files by default
+let g:NERDTreeShowHidden=1 " Show dotfiles by default
+let loaded_netrwPlugin=1 " Disable netrw since we're going to hijack it with NERDTree anyway
+let NERDTreeRespectWildIgnore=1 " Respect wildignore
 let g:NERDTreeHijackNetrw = 1 " Use the split explorer model, hijack netrw
 
 " Configure vim-nerdtree-sync
@@ -102,7 +102,7 @@ let g:javascript_plugin_flow=1
 " Configure ale (linting)
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '💩'
-let g:ale_sign_warning = '👉'
+let g:ale_sign_warning = '⚠️'
 let g:ale_linters = {
       \'javascript': ['flow', 'eslint']
       \}
