@@ -67,7 +67,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'hail2u/vim-css3-syntax'
-Plug 'styled-components/vim-styled-components', { 'branch': 'rewrite' }
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jiangmiao/auto-pairs' " Insert parenthesis etc in pairs
 Plug 'unkiwii/vim-nerdtree-sync' " Sync open file to NERDTree
 Plug 'tpope/vim-abolish' " Case-preserving search and replace :S
