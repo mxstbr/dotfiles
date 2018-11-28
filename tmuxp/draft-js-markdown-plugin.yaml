@@ -9,4 +9,4 @@ windows:
       - echo "Development here"
   - window_name: background
     panes:
-      - DEV_PORT=4010 yarn run dev
+      - PORT=4010 yarn run dev

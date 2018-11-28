@@ -5,15 +5,12 @@ windows:
     layout: main-vertical
     focus: true
     panes:
-      - vim .
-      - echo "Development here"
+      - code .
   - window_name: servers
-    layout: tiled
+    layout: even-horizontal
     panes:
-      - yarn run dev:iris
+      - yarn run dev:api
       - yarn run dev:web
-      - yarn run dev:hermes
-      - yarn run dev:athena
   - window_name: services
     layout: even-horizontal 
     panes:

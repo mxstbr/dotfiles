@@ -10,14 +10,17 @@ set numberwidth=2  " Numbers are 1 char wide
 set tabstop=4     " One tab = 4 spaces
 set shiftwidth=2  " One tab press = 2 spaces
 set softtabstop=2 expandtab " Tab => spaces
-set nowrap " Don't wrap lines
 set linebreak
 set autoindent
 filetype plugin indent on
 
 set backspace=indent,eol,start " Allow backspacing over indentation, line breaks and insertion starts
 
-set background=dark " Needed for solarized colorscheme
+if $COLORSCHEME == 'light'
+  set background=light
+else
+  set background=dark
+endif
 set laststatus=2
 set showmode " Show mode at bottom
 set showcmd  " Show incomplete commands
@@ -26,21 +29,10 @@ set noswapfile
 set nobackup
 set nowb
 
-set omnifunc=syntaxcomplete#Complete " Enable auto completion
-set completeopt=longest,menuone      " Select the match with the most common text, rather than the first one, in omnicomplete
 set history=1000  " Store longer history
 
 set undofile            " Persist undo history between sessions
 set undodir=~/.vim/undo " ...but store all the persisted files in a single directory
-
-" Select omnicomplete option with ENTER
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Always keep a menu item highlighted
-inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-" ???? All of these are from http://vim.wikia.com/wiki/Make_Vim_completion_popup_menu_work_just_like_in_an_IDE
-inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
 set incsearch  " Do highlight phrases while searching
 set nohlsearch " Don't continue to highlight searched phrases
@@ -64,7 +56,10 @@ Plug 'scrooloose/nerdtree'
 Plug 'Aldlevine/nerdtree-git-plugin'
 Plug 'altercation/vim-colors-solarized'
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+" Note: This should be mxw/vim-jsx, but there's currently a bug that makes
+" comments in the JSX nodes be wrongly highlighted. This is the branch whos PR
+" fixes it. Ref mxw/vim-jsx#165 and mxw/vim-jsx#164
+Plug 'jiulongw/vim-jsx', { 'branch': 'comments' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
@@ -79,9 +74,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
-Plug 'reasonml-editor/vim-reason'
+Plug 'reasonml-editor/vim-reason-plus'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'vim-scripts/AutoComplPop'
 Plug 'wincent/terminus'   " Better vim + tmux
 Plug 'leafgarland/typescript-vim'
 Plug 'wellle/targets.vim'
@@ -89,12 +83,17 @@ Plug 'ajh17/VimCompletesMe'
 Plug 'ap/vim-css-color'
 Plug 'octref/RootIgnore'  " Add .gitignore files to wildignore
 Plug 'tpope/vim-fugitive' " Necessary for the CTags stuff to work
+Plug 'slashmili/alchemist.vim'
+Plug 'elixir-editors/vim-elixir'
+Plug 'justinmk/vim-sneak'
+Plug 'flowtype/vim-flow'
+Plug 'vim-scripts/AutoComplPop'
+Plug 'gabrielelana/vim-markdown'
 
 call plug#end()
 
 " Set the leader options
-let mapleader = '\<Space>'
-nnoremap <Leader>\ :edit .<cr>
+let mapleader = ' '
 
 " Configure NerdTree
 :set mouse=a
@@ -113,9 +112,8 @@ let g:nerdtree_sync_cursorline=1 " Enable syncing of active file to nerdtree
 " Configure color scheme
 colorscheme solarized
 
-" Configure flowtype
-let g:flow#autoclose=1 " Don't open flow window if there's no errors
-" let g:flow#showquickfix=0 " Don't show error box
+" Configure flowtype, which we need for YouCompleteMe to work
+let g:flow#enable = 0 " Disable showing errors, ale does this for us
 
 " Configure JavaScript highlighting
 let g:javascript_plugin_jsdoc=1
@@ -126,8 +124,8 @@ let g:ale_sign_column_always = 1
 let g:ale_sign_error = '💩'
 let g:ale_sign_warning = '⚠️'
 let g:ale_linters = {
-      \'javascript': ['flow', 'eslint']
-      \}
+      \'javascript': ['flow']
+      \} " , 'eslint'
 let g:ale_javascript_prettier_use_local_config = 1
 let g:ale_javascript_eslint_suppress_missing_config = 1
 let g:ale_javascript_eslint_suppress_eslintignore = 1
@@ -135,6 +133,7 @@ let g:ale_javascript_eslint_use_global = 0
 let g:ale_fixers = {
       \'javascript': ['prettier']
       \}
+let g:ale_completion_enabled = 1
 
 " Configure JSX highlighting
 let g:jsx_ext_required=0 " Highlight JSX in .js files
@@ -153,8 +152,23 @@ nnoremap <silent> <Nop> :TmuxNavigatePrevious<cr>
 " Configure vim-fzf
 nmap <C-p> :Files<CR>
 
+" Configure vim-sneak
+let g:sneak#s_next = 1 " Jump to next match when pressing s again
+let g:sneak#label = 1  " Use label mode, similar to easymotion
+
 " Open new splits to the right and the bottom
 set splitbelow
 set splitright
 
+" Run :ALEFix on CTRL + F
+nmap <C-f> :ALEFix<CR>
 
+" Set up ReasonML
+let g:LanguageClient_serverCommands = {
+    \ 'reason': ['ocaml-language-server', '--stdio'],
+    \ 'ocaml': ['ocaml-language-server', '--stdio'],
+    \ }
+
+" Markdown
+let g:markdown_enable_spell_checking = 0
+let g:markdown_include_jekyll_support = 0

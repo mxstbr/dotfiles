@@ -13,12 +13,16 @@ HIST_STAMPS="dd.mm.yyyy"
 plugins=(
   git
   yarn-autocompletions
+  vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Make sure vim shows text correctly
+export TERM="xterm-256color"
 
 # Syntax highlighting for command
 source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  
@@ -27,6 +31,7 @@ source ~/.oh-my-zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="$HOME/.homebrew/sbin:$HOME/.homebrew/bin:$PATH"
 export PATH="$HOME/.ellipsis/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/Applications/Genymotion.app/Contents/MacOS/tools:$PATH"
 
 # Homebrew options
 export HOMEBREW_NO_ANALYTICS=1
@@ -54,6 +59,14 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export PATH="$HOME/.yarn/bin:$PATH"
 export EDITOR=vim
 
+# Make Vi mode transitions faster (KEYTIMEOUT is in hundredths of a second)
+export KEYTIMEOUT=1
+# Enable vi mode
+bindkey -v
+
 # tabtab source for electron-forge package
 # uninstall by removing these lines or running `tabtab uninstall electron-forge`
 [[ -f /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.zsh ]] && . /usr/local/lib/node_modules/electron-forge/node_modules/tabtab/.completions/electron-forge.zsh
+
+# Make Java work 
+export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home"
